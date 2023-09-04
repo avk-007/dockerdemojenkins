@@ -1,0 +1,71 @@
+Install Docker: Ensure that you have Docker installed on your system.
+ You can download and install Docker from the official website: Docker Download
+
+Create a Dockerfile:
+
+In IntelliJ IDEA, open your Spring Boot project.
+
+In the project directory, right-click and choose "New" > "File" to
+create a new file named Dockerfile (with no file extension).
+
+Edit the Dockerfile and add the content as shown in previous examples:
+
+Dockerfile
+Copy code
+# Use a base image with Java (choose an appropriate version)
+FROM openjdk:17-jre-slim
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the Spring Boot JAR file into the container
+COPY your-application.jar /app/
+
+# Expose the port your Spring Boot application is listening on
+EXPOSE 8080
+
+# Define the command to run your Spring Boot application
+CMD ["java", "-jar", "your-application.jar"]
+Replace "your-application.jar" with the actual name of your Spring Boot JAR file.
+
+Build the Docker Image from IntelliJ IDEA:
+
+Open the terminal window within IntelliJ IDEA by clicking on "View" > "Tool Windows" > "Terminal."
+
+Navigate to the directory containing your Dockerfile and Spring Boot JAR file. You can use the cd command to change directories.
+
+Run the following command to build the Docker image:
+
+bash
+Copy code
+docker build -t springboot-app .
+This command tells Docker to build an image named springboot-app based on the instructions in your Dockerfile.
+
+Wait for the Docker image to be built. You will see the build progress in the terminal.
+
+Verify the Image:
+
+To verify that the Docker image has been created successfully, you can run the following command in the terminal:
+
+bash
+Copy code
+docker images
+You should see the springboot-app image listed among the available images.
+
+Run the Docker Container:
+
+To run your Spring Boot application in a Docker container from IntelliJ IDEA, you can
+use the built-in Docker integration:
+
+Open the "Docker" view in IntelliJ IDEA (usually found on the right-hand side).
+Right-click on your Docker image (springboot-app) and select "Create Container."
+Configure container options as needed, including port mappings, environment variables, and volume mounts.
+Click the "Run" button to start the container.
+Access Your Spring Boot Application:
+
+After starting the Docker container, you can access your Spring Boot application by opening
+a web browser and navigating to http://localhost:8080 (assuming your application runs on port 8080).
+Stopping the Container:
+
+You can stop the Docker container from IntelliJ IDEA by right-clicking on
+the running container in the "Docker" view and selecting "Stop Container."
